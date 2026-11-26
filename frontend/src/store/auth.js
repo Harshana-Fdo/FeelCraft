@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { api, payload } from '../services/api';
+import { api, payload, sessionApi } from '../services/api';
 
 let refreshing;
 let sessionEpoch = 0;
@@ -11,13 +11,13 @@ export const useAuth = create(set => ({
   async signIn(mode, input) {
     if (refreshing) await refreshing;
     ++sessionEpoch;
-    const data = payload(await api.post('/auth/' + mode, input));
+    const data = payload(await sessionApi.post('/auth/' + mode, input));
     set({ status: 'ready', user: data.user, token: data.accessToken });
   },
   async signOut() {
     if (refreshing) await refreshing;
     ++sessionEpoch;
-    await api.post('/auth/logout');
+    await sessionApi.post('/auth/logout');
     set({ status: 'ready', user: null, token: null });
   },
   async updateProfile(name) {
@@ -32,7 +32,7 @@ const protectedRequest = url => url?.startsWith('/designs') || url?.startsWith('
 export function refreshSession() {
   if (!refreshing) {
     const epoch = sessionEpoch;
-    refreshing = api.post('/auth/refresh')
+    refreshing = sessionApi.post('/auth/refresh')
       .then(response => {
         const { user, accessToken } = payload(response);
         if (epoch !== sessionEpoch) return null;

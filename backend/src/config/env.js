@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config({ quiet: true });
 
 export function readConfig(env = process.env) {
-  const port = Number(env.PORT ?? 5000);
+  const port = Number(env.PORT ?? 5033);
   const clientUrl = new URL(env.CLIENT_URL ?? 'http://localhost:5173');
   const publicUrl = new URL(env.PUBLIC_APP_URL || clientUrl.origin);
 
@@ -22,6 +22,6 @@ export function readConfig(env = process.env) {
   if (jwtSecret && Buffer.byteLength(jwtSecret) < 32) {
     throw new Error('JWT_ACCESS_SECRET must contain at least 32 bytes.');
   }
-  return { port, host: env.HOST ?? 'localhost', clientOrigin: clientUrl.origin, publicAppUrl: publicUrl.origin,
+  return { port, host: env.HOST ?? '127.0.0.1', clientOrigin: clientUrl.origin, publicAppUrl: publicUrl.origin,
     jwtSecret, secureCookies: env.NODE_ENV === 'production' || publicUrl.protocol === 'https:' };
 }

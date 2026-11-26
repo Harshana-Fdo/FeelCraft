@@ -85,29 +85,33 @@ Copy-Item backend/.env.example backend/.env
 | `backend/.env` | `DB_HOST`, `DB_PORT`, `DB_NAME` | Defaults are `localhost`, `3306`, and `feelcraft_db` |
 | `backend/.env` | `DB_USER`, `DB_PASSWORD`, `DB_TLS` | Fill in your database account and enable TLS when the server is configured for it |
 | `backend/.env` | `JWT_ACCESS_SECRET` | Set a unique random secret of at least 32 bytes |
-| `backend/.env` | `HOST`, `PORT`, `NODE_ENV` | Defaults are `localhost`, `5000`, and `development` |
-| `backend/.env` | `CLIENT_URL`, `PUBLIC_APP_URL` | Use the local frontend origin for `CLIENT_URL`. Leave `PUBLIC_APP_URL` blank for local links |
-| `backend/.env` | `DB_DISABLED` | Set `true` to run with browser-local drafts |
-| `frontend/.env` | `VITE_API_BASE_URL`, `VITE_DEV_PORT`, `API_PROXY_TARGET` | Defaults are `/api`, `5173`, and `http://localhost:5000` |
+| `backend/.env` | `HOST`, `PORT`, `NODE_ENV` | Local setup uses `127.0.0.1`, `5033`, and `development` |
+| `backend/.env` | `CLIENT_URL`, `PUBLIC_APP_URL` | Both use `http://localhost:5173` for local development and sharing |
+| `backend/.env` | `DB_DISABLED` | Uses `false` for MariaDB or MySQL. Set `true` for browser-local drafts only |
+| `frontend/.env` | `VITE_API_BASE_URL`, `VITE_DEV_PORT`, `API_PROXY_TARGET` | Local setup uses `http://127.0.0.1:5033/api`, `5173`, and `http://127.0.0.1:5033` |
+| `frontend/.env` | `VITE_AUTH_API_BASE_URL` | Uses `/api` so sign-in, refresh, and logout use the frontend origin and keep the cookie same-site |
 
 Generate a signing secret locally with `node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"` and put it in the ignored backend environment file. Keep credentials out of `VITE_` variables because those values can be bundled into client code.
 
 ### Run
 
-Start both apps from the root:
+With MariaDB or MySQL running, open two terminals. In the backend directory:
 
 ```sh
+cd backend
+npm start
+```
+
+In the second terminal, from the project root:
+
+```sh
+cd frontend
 npm run dev
 ```
 
-Open [FeelCraft](http://localhost:5173). The API health endpoint is available [through the frontend proxy](http://localhost:5173/api/health).
+Both commands load their app's `.env` automatically. Open [FeelCraft](http://localhost:5173) and use that exact origin for browser sessions. API health is available [directly](http://127.0.0.1:5033/api/health) and [through the Vite proxy](http://localhost:5173/api/health).
 
-To run them separately, execute the following commands in separate terminals from the root:
-
-```sh
-npm run dev --prefix frontend
-npm run dev --prefix backend
-```
+For a single terminal, `npm run dev` at the project root starts both apps with development watchers.
 
 If an API port is occupied, set `PORT` and update `API_PROXY_TARGET` to match. If you change the frontend port, update `CLIENT_URL` as well. Use the same frontend origin to reopen browser-local drafts.
 

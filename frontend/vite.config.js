@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import tailwind from '@tailwindcss/vite';
 
 export default defineConfig(({ mode }) => {
-  const { API_PROXY_TARGET = 'http://localhost:5000', VITE_DEV_PORT = '5173', FEELCRAFT_TUNNEL_PREVIEW } = loadEnv(mode, process.cwd(), '');
+  const { API_PROXY_TARGET = 'http://127.0.0.1:5033', VITE_DEV_PORT = '5173', FEELCRAFT_TUNNEL_PREVIEW } = loadEnv(mode, process.cwd(), '');
   const proxy = { '/api': { target: API_PROXY_TARGET, changeOrigin: true } };
 
   return {
