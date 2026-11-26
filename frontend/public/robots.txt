@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /m/
+Disallow: /published-preview/
+Disallow: /api/messages/

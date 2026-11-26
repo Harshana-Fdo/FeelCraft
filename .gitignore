@@ -1,0 +1,64 @@
+# Dependencies and generated output
+node_modules/
+dist/
+coverage/
+.nyc_output/
+.vite/
+playwright-report/
+test-results/
+playwright/.cache/
+*.tsbuildinfo
+
+# Environment files, credentials and key material
+.env
+.env.*
+!.env.example
+.envrc
+.npmrc
+.netrc
+.pypirc
+.aws/
+.ssh/
+secrets/
+credentials/
+credentials.json
+service-account*.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Machine-local tunnel tooling and logs
+.local-tools/
+.cloudflared/
+cloudflared
+cloudflared.exe
+cloudflared*.yml
+cloudflared*.yaml
+*.log
+*.log.*
+logs/
+*.pid
+*.pid.lock
+
+# Private data and database backups
+backend/uploads/*
+!backend/uploads/.gitkeep
+database/backups/
+database/dumps/
+# Only versioned schema and seed SQL belong in the repository.
+*.sql
+!/database/schema.sql
+!/database/seed.sql
+!/database/migrations/[0-9]*_*.sql
+*.dump.sql
+*.backup.sql
+*.sql.gz
+*.dump
+*.bak
+
+# Local editor and OS files
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

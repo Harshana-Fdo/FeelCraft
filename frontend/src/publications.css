@@ -1,0 +1,132 @@
+.publication-modal {
+  width: min(calc(100% - 1.4rem), 40rem);
+  max-height: 94svh;
+  overflow: auto;
+  margin: auto;
+  color: var(--ink);
+  background: #fffdf9;
+  border: 1px solid var(--line);
+  border-radius: .85rem;
+  box-shadow: 0 1.6rem 4rem #38243030;
+}
+.publication-modal::backdrop { background: #281a2aa8; }
+.publication-wide { width: min(calc(100% - 1rem), 48rem); }
+.publication-modal-header {
+  display: flex; align-items: center; justify-content: space-between; gap: .6rem;
+  position: sticky; z-index: 3; top: 0;
+  padding: .9rem 1.2rem; border-bottom: 1px solid var(--line); background: #fffdf9;
+}
+.publication-modal-header h2 { font-size: clamp(1.5rem, 5vw, 2.2rem); }
+.publication-modal-header button { display: grid; place-items: center; padding: .45rem; border-radius: .35rem; }
+.publication-modal-header button:hover { background: var(--color-soft-rose); }
+.publication-modal-content { padding: clamp(.85rem, 3vw, 1.4rem); }
+.publication-form { display: grid; gap: .66rem; }
+.publication-form fieldset { min-width: 0; }
+.publication-form select, .publication-form input { min-height: 2.65rem; }
+.publication-fields, .publication-action-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .2rem .72rem; }
+.publication-action-grid { gap: .58rem; margin-top: 1rem; }
+.publication-subtitle { color: var(--muted); font-weight: 600; overflow-wrap: anywhere; }
+.publication-feedback { margin-top: .7rem; color: #405b49; font-size: .9rem; }
+.publication-form .button-row, .publication-confirm { margin-top: .55rem; }
+.publication-preview { margin-top: .8rem; overflow: hidden; border-radius: .63rem; }
+.publication-row { align-items: flex-start; }
+.publication-row .button-row { max-width: 39rem; }
+.publication-row .button { min-height: 2.5rem; }
+.published-section > .publication-feedback { margin-bottom: .8rem; }
+
+.published-recipient { min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; background: #fbf3ef; }
+.recipient-brand {
+  justify-self: center; display: flex; align-items: center; gap: .43rem;
+  padding: .85rem 1rem; color: #613b50; font: 700 1.28rem var(--font-editorial);
+}
+.recipient-brand img { width: 1.85rem; height: 1.85rem; }
+.recipient-experience {
+  --moment-ink: #74334b; --moment-bg: #f5e0e4; --moment-light: #fff7ee; --env: #e1a3ab; --env-deep: #c3798c;
+  position: relative; isolation: isolate; overflow: hidden; display: grid; place-items: center;
+  min-height: 75svh; padding: clamp(1.1rem, 5vw, 3rem) .95rem;
+  color: var(--moment-ink); background: radial-gradient(ellipse at 49% 39%, var(--moment-light) 0%, var(--moment-bg) 73%);
+}
+.recipient-experience.mood-anger { --moment-ink: #78364a; --moment-bg: #e7c9cc; --moment-light: #fcf0e9; --env: #bc7e8d; --env-deep: #a96276; }
+.recipient-experience.mood-sadness { --moment-ink: #35536d; --moment-bg: #cadaec; --moment-light: #f4f8fa; --env: #a1bfd3; --env-deep: #799bb8; }
+.recipient-experience.mood-apology { --moment-ink: #405d47; --moment-bg: #dce5d2; --moment-light: #fff7e7; --env: #b7c5a6; --env-deep: #8ca583; }
+.recipient-experience.mood-secret-crush { --moment-ink: #60417d; --moment-bg: #e3d2f3; --moment-light: #fff2f6; --env: #c4aadf; --env-deep: #a180bf; }
+.recipient-welcome, .recipient-reveal { position: relative; width: min(100%, 40rem); display: grid; justify-items: center; gap: .65rem; text-align: center; }
+.recipient-welcome h1, .recipient-reveal h1, .recipient-status h1 { font-size: clamp(2rem, 6vw, 4rem); overflow-wrap: anywhere; }
+.recipient-welcome p { margin-bottom: .45rem; }
+.recipient-welcome > .text-link { padding: .35rem .15rem; color: var(--moment-ink); }
+.recipient-welcome > .button { margin-bottom: .2rem; min-width: 10.8rem; }
+.recipient-opening-art {
+  width: min(93%, 25rem); height: clamp(12rem, 47vw, 17rem);
+  display: grid; place-items: center; position: relative; perspective: 700px;
+}
+.recipient-art-orbit {
+  position: absolute; inset: 11% 3% 12%; transform: rotate(-13deg);
+  border: 1px solid color-mix(in srgb, var(--moment-ink) 20%, transparent); border-radius: 50%;
+}
+.recipient-envelope, .recipient-letter {
+  position: absolute; width: 62%; height: 51%; display: grid; place-items: center;
+}
+.recipient-envelope {
+  bottom: 17%; border-radius: .46rem; color: var(--moment-ink); background: var(--env);
+  box-shadow: 0 16px 34px #36213135; transform-style: preserve-3d;
+}
+.recipient-envelope::before {
+  content: ''; position: absolute; inset: 0; background: var(--env-deep); clip-path: polygon(0 100%, 50% 31%, 100% 100%);
+  border-radius: inherit; opacity: .72;
+}
+.recipient-flap {
+  position: absolute; inset: 0; transform-origin: top center;
+  background: color-mix(in srgb, var(--env) 68%, var(--moment-light));
+  clip-path: polygon(0 0, 100% 0, 50% 69%);
+}
+.recipient-seal {
+  position: absolute; top: 46%; display: grid; place-items: center; width: 2.4rem; aspect-ratio: 1;
+  border-radius: 50%; background: var(--moment-ink); color: #fff7f4; box-shadow: 0 3px 8px #36213125;
+}
+.recipient-letter {
+  bottom: 23%; width: 48%; height: 53%; border: 1px solid #fff9ef; border-radius: .32rem;
+  color: var(--moment-ink); background: var(--moment-light); box-shadow: 0 9px 20px #3621311b;
+}
+.recipient-letter::after { content: ''; position: absolute; inset: 7%; border: 1px solid color-mix(in srgb, var(--moment-ink) 23%, transparent); }
+.opening-paper .recipient-envelope { transform: rotate(-4deg); }
+.opening-paper .recipient-flap { clip-path: polygon(0 0, 100% 0, 100% 51%, 0 66%); }
+.opening-paper .recipient-letter { border-radius: .06rem; }
+.recipient-ornament { position: absolute; width: 35%; opacity: .86; }
+.ornament-left { left: 0; bottom: 9%; transform: rotate(-17deg); }
+.ornament-right { right: 0; top: 5%; transform: rotate(143deg); }
+.recipient-particles { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.recipient-particles > span {
+  position: absolute; color: var(--moment-ink); opacity: .22; animation: recipient-drift 5.8s ease-in-out 3 alternate both;
+}
+.particles-rain > span { animation: recipient-rain 2.2s linear 8 both; }
+.particles-rain i { display: block; margin: auto; height: 22px; width: 1px; background: currentColor; transform: rotate(17deg); }
+.particles-stars > span { animation: recipient-twinkle 4s ease-in-out 4 both; }
+.particles-petals > span { animation-direction: alternate-reverse; }
+@keyframes recipient-drift { 0% { transform: translateY(16px) rotate(-12deg); opacity: .13; } 100% { transform: translateY(-34px) rotate(14deg); opacity: .42; } }
+@keyframes recipient-rain { 0% { transform: translate(9px, -44px); opacity: 0; } 40% { opacity: .38; } 100% { transform: translate(-16px, 64px); opacity: 0; } }
+@keyframes recipient-twinkle { 0%, 100% { opacity: .13; transform: scale(.65); } 50% { opacity: .55; transform: scale(1.13); } }
+.recipient-sound { position: relative; justify-self: end; margin-bottom: .65rem; }
+.recipient-sound .button { min-height: 2.25rem; padding: .45rem .62rem; }
+.recipient-artwork { width: min(100%, 32rem); overflow: hidden; border-radius: .38rem; box-shadow: 0 15px 44px #42263930; }
+.recipient-reveal .recipient-artwork { margin: .6rem auto; }
+.recipient-dedication, .recipient-signature { font-family: var(--font-editorial); font-size: 1.22rem; overflow-wrap: anywhere; }
+.recipient-signature { font-style: italic; }
+.recipient-actions {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: .65rem 1.5rem; padding: .9rem .6rem;
+}
+.recipient-actions button { min-height: 2.2rem; }
+.recipient-status {
+  display: grid; justify-items: center; align-content: center; gap: .7rem;
+  min-height: 65svh; padding: 1rem; text-align: center;
+}
+.recipient-status p { color: var(--muted); }
+.recipient-status form { width: min(100%, 21rem); display: grid; gap: .55rem; }
+.recipient-lock { margin-bottom: .4rem; color: var(--brand); }
+@media (max-width: 32rem) {
+  .publication-fields, .publication-action-grid { grid-template-columns: 1fr; }
+  .recipient-experience { min-height: 76svh; }
+  .recipient-sound { justify-self: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .recipient-particles { display: none; }
+}
